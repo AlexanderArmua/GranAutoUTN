@@ -7,16 +7,13 @@ public class TanqueNafta {
         naftaRestante = litrosNafta;
     }
 
-    public boolean estaEnReservaOProximo() {
-        return estaEnReserva() || estaProximoAReserva();
-    }
-
     public void encender() {
         naftaRestante *= 0.999;
     }
 
     public void consumirNaftaPorKmph(Double kmph) {
         Double consumicion = kmph * 0.133;
+
         if (naftaRestante > consumicion) {
             naftaRestante -= consumicion;
         } else {
@@ -24,11 +21,21 @@ public class TanqueNafta {
         }
     }
 
-    private boolean estaProximoAReserva() {
+    public boolean estaProximoAReserva() {
         return (capacidadTotal * 0.15) >= naftaRestante;
     }
 
-    private boolean estaEnReserva() {
+    public boolean estaEnReserva() {
         return (capacidadTotal * 0.10) >= naftaRestante;
+    }
+
+    public void cargarCombustible(Double litros) {
+        Double naftaFinal = naftaRestante + litros;
+
+        if (naftaFinal > capacidadTotal) {
+            naftaRestante = capacidadTotal;
+        } else {
+            naftaRestante = naftaFinal;
+        }
     }
 }

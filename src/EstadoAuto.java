@@ -9,8 +9,8 @@ class EstadoAuto {
         }
 
         @Override
-        public void apagar(Auto auto) {
-            // TODO: Ver que implementar
+        public void apagar(Auto auto) throws Exception {
+            throw new Exception("El auto debe estar encendido para poder apagarlo");
         }
 
         @Override
@@ -19,12 +19,17 @@ class EstadoAuto {
         }
 
         @Override
-        public void detenerse(Auto auto) {
-            // TODO: Ver que implementar
+        public void detenerse(Auto auto) throws Exception {
+            throw new Exception("El auto debe estar encendido para poder detenerlo");
         }
 
         @Override
-        public boolean estaEnReservaOProximo(Auto _auto) throws Exception {
+        public boolean estaEnReserva(Auto _auto) throws Exception {
+            throw new Exception("El auto debe estar encendido para poder preguntar sobre su tanque");
+        }
+
+        @Override
+        public boolean estaProximoAReserva(Auto _auto) throws Exception {
             throw new Exception("El auto debe estar encendido para poder preguntar sobre su tanque");
         }
     }
@@ -32,8 +37,8 @@ class EstadoAuto {
     public static class EstadoEncendido implements IEstadoAuto {
 
         @Override
-        public void encender(Auto auto) {
-            // TODO: Ver que implementar
+        public void encender(Auto auto) throws Exception {
+            throw new Exception("El auto debe estar apagado para poder encenderlo");
         }
 
         @Override
@@ -53,8 +58,13 @@ class EstadoAuto {
         }
 
         @Override
-        public boolean estaEnReservaOProximo(Auto auto) throws Exception {
-            return false;
+        public boolean estaEnReserva(Auto auto)  {
+            return auto.getTanqueNafta().estaEnReserva();
+        }
+
+        @Override
+        public boolean estaProximoAReserva(Auto auto) {
+            return auto.getTanqueNafta().estaProximoAReserva();
         }
     }
 }

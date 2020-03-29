@@ -8,11 +8,11 @@ public class Motor {
     }
 
     public void encender() {
-        alterarTemperaturaMotor(70);
+        aumentarTemperatura(70);
     }
 
     public void apagar() {
-        alterarTemperaturaMotor(-temperaturaMotor);
+        disminuirTemperatura(temperaturaMotor);
     }
 
     public double getTemperatura() {
@@ -20,24 +20,28 @@ public class Motor {
     }
 
     public void detenerse() {
-        alterarTemperaturaMotor(0.04 * velocidad);
+        aumentarTemperatura(0.04 * velocidad);
         velocidad = 0;
     }
 
     public void acelerar(Double kmph) {
-        alterarTemperaturaMotor(0.2 * kmph);
+        aumentarTemperatura(0.2 * kmph);
         velocidad = kmph;
     }
+    private void enfriarSiEsNecesario() {
+        if (estaCaliente()) {
+            disminuirTemperatura(15);
+        }
+    }
 
-    private void alterarTemperaturaMotor(double temperatura) {
-        temperaturaMotor += temperatura;
+    private void aumentarTemperatura(double temperatura) {
+        temperaturaMotor += Math.abs(temperatura);
         enfriarSiEsNecesario();
     }
 
-    private void enfriarSiEsNecesario() {
-        if (estaCaliente()) {
-            alterarTemperaturaMotor(-15);
-        }
+    private void disminuirTemperatura(double temperatura) {
+        temperaturaMotor -= Math.abs(temperatura);
+        enfriarSiEsNecesario();
     }
 
     private boolean estaCaliente() {

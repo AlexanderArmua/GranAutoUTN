@@ -10,11 +10,11 @@ public class Auto {
         estadoAuto = new EstadoAuto.EstadoApagado();
     }
 
-    public void encender() {
+    public void encender() throws Exception {
         estadoAuto.encender(this);
     }
 
-    public void apagar() {
+    public void apagar() throws Exception {
         estadoAuto.apagar(this);
     }
 
@@ -22,12 +22,20 @@ public class Auto {
         estadoAuto.acelerar(xmh, this);
     }
 
-    public void detenerse() {
+    public void detenerse() throws Exception {
         estadoAuto.detenerse(this);
     }
 
-    public boolean estaEnReservaOProximo() throws Exception {
-        return estadoAuto.estaEnReservaOProximo(this);
+    public void cargarCombustible(Double litros) {
+        tanqueNafta.cargarCombustible(litros);
+    }
+
+    public boolean estaEnReserva() throws Exception {
+        return estadoAuto.estaEnReserva(this);
+    }
+
+    public boolean estaProximoAReserva() throws Exception {
+        return estadoAuto.estaProximoAReserva(this);
     }
 
     public double temperaturaMotor() {
