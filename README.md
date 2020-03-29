@@ -1,5 +1,5 @@
 # GranAutoUTN
-Proyecto personal para ejercicio de la UTN
+Proyecto grupal para ejercicio de la UTN de la materia "Diseño de Sistemas".
 
 ## Práctica de clase 
 ### Gran viaje 
