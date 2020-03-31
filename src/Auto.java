@@ -7,7 +7,7 @@ public class Auto {
     public Auto(Double litrosNafta) {
         motor = new Motor();
         tanqueNafta = new TanqueNafta(litrosNafta);
-        estadoAuto = new EstadoAuto.EstadoApagado();
+        estadoAuto = EstadoAuto.ESTADO_APAGADO;
     }
 
     public void encender() throws Exception {

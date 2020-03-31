@@ -1,9 +1,45 @@
-abstract class EstadoAuto {
-    public static class EstadoApagado implements IEstadoAuto {
+public enum EstadoAuto implements IEstadoAuto{
+    ESTADO_ENCENDIDO {
+        @Override
+        public void encender(Auto auto) throws Exception {
+            throw new Exception("El auto debe estar apagado para poder encenderlo");
+        }
 
         @Override
+        public void apagar(Auto auto) {
+            auto.setNewEstado(EstadoAuto.ESTADO_APAGADO);
+            auto.getMotor().apagar();
+        }
+
+        @Override
+        public void acelerar(Double kph, Auto auto) {
+            auto.getMotor().acelerar(kph);
+        }
+
+        @Override
+        public void detenerse(Auto auto) {
+            auto.getMotor().detenerse();
+        }
+
+        @Override
+        public boolean estaEnReserva(Auto auto)  {
+            return auto.getTanqueNafta().estaEnReserva();
+        }
+
+        @Override
+        public boolean estaProximoAReserva(Auto auto) {
+            return auto.getTanqueNafta().estaProximoAReserva();
+        }
+
+        @Override
+        public boolean estaEncendido() {
+            return true;
+        }
+    },
+    ESTADO_APAGADO {
+        @Override
         public void encender(Auto auto) {
-            auto.setNewEstado(new EstadoEncendido());
+            auto.setNewEstado(EstadoAuto.ESTADO_ENCENDIDO);
             auto.getMotor().encender();
             auto.getTanqueNafta().encender();
         }
@@ -37,45 +73,5 @@ abstract class EstadoAuto {
         public boolean estaEncendido() {
             return false;
         }
-    }
-
-    public static class EstadoEncendido implements IEstadoAuto {
-
-        @Override
-        public void encender(Auto auto) throws Exception {
-            throw new Exception("El auto debe estar apagado para poder encenderlo");
-        }
-
-        @Override
-        public void apagar(Auto auto) {
-            auto.setNewEstado(new EstadoApagado());
-            auto.getMotor().apagar();
-        }
-
-        @Override
-        public void acelerar(Double kph, Auto auto) {
-            auto.getMotor().acelerar(kph);
-        }
-
-        @Override
-        public void detenerse(Auto auto) {
-            auto.getMotor().detenerse();
-        }
-
-        @Override
-        public boolean estaEnReserva(Auto auto)  {
-            return auto.getTanqueNafta().estaEnReserva();
-        }
-
-        @Override
-        public boolean estaProximoAReserva(Auto auto) {
-            return auto.getTanqueNafta().estaProximoAReserva();
-        }
-
-        @Override
-        public boolean estaEncendido() {
-            return true;
-        }
-
     }
 }
