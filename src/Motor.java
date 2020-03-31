@@ -12,6 +12,7 @@ public class Motor {
     }
 
     public void apagar() {
+        detenerse();
         disminuirTemperatura(temperaturaMotor);
     }
 
@@ -28,6 +29,15 @@ public class Motor {
         aumentarTemperatura(0.2 * kmph);
         velocidad = kmph;
     }
+
+    public double getVelocidad() {
+        return velocidad;
+    }
+
+    public boolean estaEnMovimiento() {
+        return getVelocidad() > 0;
+    }
+
     private void enfriarSiEsNecesario() {
         if (estaCaliente()) {
             disminuirTemperatura(15);

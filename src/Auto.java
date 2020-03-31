@@ -42,6 +42,14 @@ public class Auto {
         return motor.getTemperatura();
     }
 
+    public boolean estaEnMovimiento() {
+        return getMotor().estaEnMovimiento();
+    }
+
+    public boolean estaEncendido() {
+        return estadoAuto.estaEncendido();
+    }
+
     public void setNewEstado(IEstadoAuto estadoAuto) {
         this.estadoAuto = estadoAuto;
     }

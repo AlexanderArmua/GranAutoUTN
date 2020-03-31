@@ -5,4 +5,5 @@ public interface IEstadoAuto {
     void detenerse(Auto auto) throws Exception;
     boolean estaEnReserva(Auto auto) throws Exception;
     boolean estaProximoAReserva(Auto auto) throws Exception;
+    boolean estaEncendido();
 }

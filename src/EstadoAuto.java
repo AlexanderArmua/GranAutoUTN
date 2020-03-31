@@ -1,4 +1,4 @@
-class EstadoAuto {
+abstract class EstadoAuto {
     public static class EstadoApagado implements IEstadoAuto {
 
         @Override
@@ -31,6 +31,11 @@ class EstadoAuto {
         @Override
         public boolean estaProximoAReserva(Auto _auto) throws Exception {
             throw new Exception("El auto debe estar encendido para poder preguntar sobre su tanque");
+        }
+
+        @Override
+        public boolean estaEncendido() {
+            return false;
         }
     }
 
@@ -66,5 +71,11 @@ class EstadoAuto {
         public boolean estaProximoAReserva(Auto auto) {
             return auto.getTanqueNafta().estaProximoAReserva();
         }
+
+        @Override
+        public boolean estaEncendido() {
+            return true;
+        }
+
     }
 }
